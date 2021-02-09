@@ -1,14 +1,70 @@
 <html>
-    <head>
-        <title>ECE 140A Lab 4</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="web_ui.css">
-        <script src="web_ui.js"></script>
-    </head>
-    <body>
-        <h1>Tello Controller</h1>
 
-        <!-- Add your HTML below -->
+<head>
+    <title>ECE 140A Lab 4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="web_ui.css">
+    <script type="text/javascript" src="web_ui.js"></script>
+</head>
 
-    </body>
+<body>
+    <h1>Tello Controller</h1>
+
+    <!-- Add your HTML below -->
+    <button class ="controller2" id="takeoff" onClick="sendNoValCommand(this.id)">Takeoff</button>
+    <button class ="controller2" id="land" onClick="sendNoValCommand(this.id)">Land</button>
+    <br><br>
+    
+    <label for="inputField">Value:</label><br>
+    <input type="text" id="inputField" name="inputField" placeholder="Enter Movement Value"><br>
+  
+    <br><br><br><br>
+
+
+
+    <section class="grid">
+
+        <table class="fixed">
+            <tr>
+                <td></td>
+                <td><button class="controller" id="up" onClick="sendCommand(this.id)">&#8657;</button></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button class="controller" id="ccw" onClick="sendCommand(this.id)">&#8630;</button></td>
+                <td></td>
+                <td><button class="controller" id="cw" onClick="sendCommand(this.id)">&#8631;</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button class="controller" id="down" onClick="sendCommand(this.id)">&#8659;</button></td>
+                <td></td>
+            </tr>
+        </table>
+
+
+
+
+
+        <table class = "fixed">
+            <tr>
+                <td></td>
+                <td><button class="controller" id="forward" onClick="sendCommand(this.id)">&#8593;</button></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button class="controller" id="left" onClick="sendCommand(this.id)">&#8592;</button></td>
+                <td></td>
+                <td><button class="controller" id="right" onClick="sendCommand(this.id)">&#8594;</button></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button class="controller" id="back" onClick="sendCommand(this.id)">&#8595;</button></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
 </html>

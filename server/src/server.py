@@ -23,6 +23,19 @@ valid_commands = ['takeoff','land','up','down','left','right','back','forward','
 # A Function to Queue Commands to the MySQL Database
 def send_command(command):
   # Insert code to insert commands to database here:
+  db = mysql.connect(host = db_host, database = db_name, user = db_user, passwd = db_pass)
+  cursor = db.cursor()
+  query = "insert into Commands (message, completed) values (%s, %s)"
+  values = [command, 0]
+  cursor.execute(query, values)
+  db.commit()
+
+  print('-----INSERT-----')
+  print(cursor.rowcount, "record inserted.")
+
+  cursor.execute("select * from Commands;")
+  response = cursor.fetchall()
+  print(response)
   pass
 
 

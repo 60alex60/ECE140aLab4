@@ -44,33 +44,54 @@ if __name__ == "__main__":
 
       # Get the most recent command
       # Take care to select only one pending command that is NOT complete!
-      # Use 'response' to hold the command.
+      # Use the variable 'response' to hold the command.
       ################################################
       # INSERT CODE TO GET NEXT COMMAND HERE
       ################################################
       response = None
+      cursor.execute("select * from Commands where completed=0 order by id")
+      response = cursor.fetchall()
+      print(response)
 
 
 
       # Check if there was a command in the queue
-      if response is not None:
+      if response is not None and response != []:
 
         time_last_command_sent = now
         print("DEBUG: Command received (dispatcher): ", response)
+
+        currCommand = response[0][1]
+        commandID = response[0][0]
+
+        print(currCommand)
+        print(commandID)
 
         ########################################
         # INSERT DRONE CONTROL COMMAND HERE
         ########################################
 
 
-
+        drone.send_command(currCommand)
 
         
         ############################################
         # MARK THE COMMAND AS COMPLETED IN DB HERE
         ############################################
 
+#        sql = "update Commands set completed=1 where id=%s"
+#        val = (commandID)
+#        cursor.execute(sql, val)
 
+        query = """ UPDATE Commands
+                SET completed = %s
+                WHERE id = %s """
+
+        data = (1, commandID)
+
+
+        cursor.execute(query,data)
+        db.commit()
 
 
       # Else, if time since last command > 10s, query battery to keep connection
